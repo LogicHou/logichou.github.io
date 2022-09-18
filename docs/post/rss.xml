@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on 番外地</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on 番外地</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 18 Sep 2022 08:01:51 +0800</lastBuildDate><atom:link href="/post/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go常见的并发模式 - 退出模式</title>
+      <link>/post/2022/09/go-concurrency-pattern-2/</link>
+      <pubDate>Sun, 18 Sep 2022 08:01:51 +0800</pubDate>
+      
+      <guid>/post/2022/09/go-concurrency-pattern-2/</guid>
+      <description>分离模式 1）一次性任务 2）常驻后台执行一些特定任务、如监视(motion)、观察(watch)等。其实现通常采用 for{&amp;hellip;} 或 for{ select{&amp;hellip;} } 代码段形式，并多以</description>
+    </item>
+    
+    <item>
+      <title>Go常见的并发模式 - 创建模式</title>
+      <link>/post/2022/09/go-concurrency-pattern-1/</link>
+      <pubDate>Sat, 17 Sep 2022 22:51:19 +0800</pubDate>
+      
+      <guid>/post/2022/09/go-concurrency-pattern-1/</guid>
+      <description>&lt;p&gt;在内部创建一个 goroutine 并返回一个 channel 类型的变量的函数，是 Go 中最常见的 goroutine 创建模式。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

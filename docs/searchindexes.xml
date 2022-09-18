@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<search>
+  
+  <entry>
+    <title>Go常见的并发模式 - 退出模式</title>
+    <url>/post/2022/09/go-concurrency-pattern-2/</url>
+    <categories>
+    </categories>
+    <tags>
+    </tags>
+    <content type="html"><![CDATA[分离模式 1）一次性任务
+2）常驻后台执行一些特定任务、如监视(motion)、观察(watch)等。其实现通常采用 for{&hellip;} 或 for{ select{&hellip;} } 代码段形式，并多以定时器（timer）或事件（event）驱动执行。
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>Go常见的并发模式 - 创建模式</title>
+    <url>/post/2022/09/go-concurrency-pattern-1/</url>
+    <categories>
+    </categories>
+    <tags>
+    </tags>
+    <content type="html"><![CDATA[在内部创建一个 goroutine 并返回一个 channel 类型的变量的函数，是 Go 中最常见的 goroutine 创建模式。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 package main import &#34;fmt&#34; func spawn(f func() int) chan int { c := make(chan int) go func() { c &lt;- f() }() return c } func main() { c := spawn(func() int { return 100 }) fmt.Println(&lt;-c) } spawn 函数创建的新 goroutine 与调用 spawn 函数的 goroutine 之间通过一个 channel 建立起了联系：两个 goroutine 可以通过这个 channel 进行通信。
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>关于 Hugo NexT 组织</title>
+    <url>/about.html</url>
+    <categories>
+    </categories>
+    <tags>
+    </tags>
+    <content type="html"><![CDATA[To be continued&hellip;
+]]></content>
+  </entry>
+  
+</search>
