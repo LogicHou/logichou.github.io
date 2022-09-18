@@ -271,7 +271,7 @@ params:
     rounded: true
     # 开启头像随鼠标转动动画
     # If true, the avatar will be rotated with the cursor.
-    rotated: true
+    rotated: false
 
   # 是否在侧边栏显示文章、分类、标签信息
   # Posts / Categories / Tags in sidebar.
@@ -594,7 +594,7 @@ params:
     enable: true
     # 你的 Github 仓库地址
     # Your repository url on Github.
-    permalink: https://github.com/hugo-next
+    permalink: https://github.com/logichou
     # 关注说明
     # Show this title when cursor move on.
     title: Follow me on GitHub
