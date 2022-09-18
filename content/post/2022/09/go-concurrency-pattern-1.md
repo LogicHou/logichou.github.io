@@ -1,6 +1,13 @@
 ---
 title: "Go常见的并发模式 - 创建模式"
 date: 2022-09-17T22:51:19+08:00
+
+categories:
+ - Go
+tags:
+ - Go
+ - 并发
+
 draft: false
 toc: true
 ---
@@ -29,6 +36,11 @@ func main() {
 	})
 	fmt.Println(<-c)
 }
+```
+
+```shell
+$ go run main.go
+100
 ```
 
 spawn 函数创建的新 goroutine 与调用 spawn 函数的 goroutine 之间通过一个 channel 建立起了联系：两个 goroutine 可以通过这个 channel 进行通信。

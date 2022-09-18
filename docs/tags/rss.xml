@@ -5,6 +5,25 @@
     <link>/tags/</link>
     <description>Recent content in Tags on 番外地</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language><atom:link href="/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 18 Sep 2022 17:51:27 +0800</lastBuildDate><atom:link href="/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go</title>
+      <link>/tags/go/</link>
+      <pubDate>Sun, 18 Sep 2022 17:51:27 +0800</pubDate>
+      
+      <guid>/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>并发</title>
+      <link>/tags/%E5%B9%B6%E5%8F%91/</link>
+      <pubDate>Sun, 18 Sep 2022 17:51:27 +0800</pubDate>
+      
+      <guid>/tags/%E5%B9%B6%E5%8F%91/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

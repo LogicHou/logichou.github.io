@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>番外地</title>
-    <link>/</link>
-    <description>Recent content on 番外地</description>
+    <title>并发 on 番外地</title>
+    <link>/tags/%E5%B9%B6%E5%8F%91/</link>
+    <description>Recent content in 并发 on 番外地</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 18 Sep 2022 17:51:27 +0800</lastBuildDate><atom:link href="/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Sep 2022 17:51:27 +0800</lastBuildDate><atom:link href="/tags/%E5%B9%B6%E5%8F%91/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go常见的并发模式 - 退出模式</title>
       <link>/post/2022/09/go-concurrency-pattern-2/</link>
@@ -23,15 +23,6 @@
       
       <guid>/post/2022/09/go-concurrency-pattern-1/</guid>
       <description>&lt;p&gt;在内部创建一个 goroutine 并返回一个 channel 类型的变量的函数，是 Go 中最常见的 goroutine 创建模式。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>关于 Hugo NexT 组织</title>
-      <link>/about.html</link>
-      <pubDate>Thu, 09 Jun 2022 20:12:52 +0800</pubDate>
-      
-      <guid>/about.html</guid>
-      <description>To be continued&amp;hellip;</description>
     </item>
     
   </channel>

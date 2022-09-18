@@ -6,14 +6,14 @@
     <description>Recent content in Posts on 番外地</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 18 Sep 2022 08:01:51 +0800</lastBuildDate><atom:link href="/post/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Sep 2022 17:51:27 +0800</lastBuildDate><atom:link href="/post/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go常见的并发模式 - 退出模式</title>
       <link>/post/2022/09/go-concurrency-pattern-2/</link>
-      <pubDate>Sun, 18 Sep 2022 08:01:51 +0800</pubDate>
+      <pubDate>Sun, 18 Sep 2022 17:51:27 +0800</pubDate>
       
       <guid>/post/2022/09/go-concurrency-pattern-2/</guid>
-      <description>分离模式 1）一次性任务 2）常驻后台执行一些特定任务、如监视(motion)、观察(watch)等。其实现通常采用 for{&amp;hellip;} 或 for{ select{&amp;hellip;} } 代码段形式，并多以</description>
+      <description>分离模式 分离模式是使用最为广泛的 goroutine 退出模式。对于分离的 goroutine，创建它的 goroutine 不需要关心它的退出，这类 goroutine 在启动后即与其创建者彻底分离，</description>
     </item>
     
     <item>
