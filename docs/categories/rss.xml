@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on 番外地</title>
+    <title>Categories on Proj-86</title>
     <link>/categories/</link>
-    <description>Recent content in Categories on 番外地</description>
+    <description>Recent content in Categories on Proj-86</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 19 Sep 2022 16:11:47 +0800</lastBuildDate><atom:link href="/categories/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 20 Sep 2022 20:32:11 +0800</lastBuildDate><atom:link href="/categories/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go</title>
       <link>/categories/go/</link>
-      <pubDate>Mon, 19 Sep 2022 16:11:47 +0800</pubDate>
+      <pubDate>Tue, 20 Sep 2022 20:32:11 +0800</pubDate>
       
       <guid>/categories/go/</guid>
       <description></description>
