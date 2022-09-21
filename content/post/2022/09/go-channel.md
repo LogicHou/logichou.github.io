@@ -366,3 +366,58 @@ select {
   default:            // 当上面case中的channel通信均无法实施时，执行该默认分支
 }
 ```
+
+## 惯用法
+
+### 利用 default 分支避免阻塞
+
+```go
+func sendTime(c interface{}, seq uintptr) {
+  // 无阻塞地向c发送当前时间
+  // ...
+  select {
+    case c.(chan Time) <- Noe():
+    default:
+  }
+}
+```
+
+### 实现超时机制
+
+通过超时事件，可以避免长长期陷入某种操作的等待中，也可以做一些异常处理工作。
+
+一次具有 30s 超时的 select 的实现：
+
+```go
+func worker() {
+  select {
+    case <-c:
+      // ...
+    case <-time.After(30 * time.Second):
+      return
+  }
+}
+```
+
+在应用具有超时机制的 select 时，要特别注意 timer 使用后的释放，尤其是在大量创建 timer 时。
+
+### 实现心跳机制
+
+这种机制可以在监听 channel 的同时，执行一些周期性的任务：
+
+```go
+func worker() {
+	heartbeat := time.NewTicker(30 * time.Second)
+	defer heartbeat.Stop()
+	for {
+		select {
+		case <-c:
+			// ... 处理业务逻辑
+		case <-heartbeat.C:
+			// ... 处理心跳
+		}
+	}
+}
+```
+
+与 timer 一样，在使用完 ticker 之后，要记得调用其 Stop 方法停止 ticker 的运作，这样在 heartbeat.C 上就不会再持续产生心跳事件了。
