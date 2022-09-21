@@ -34,7 +34,173 @@ func stream(ctx context.Context, out chan <- Value) error // 将只发送（send
 func spawn(...) <-chan T // 将只接收（receive-only）类型channel作为返回值
 ```
 
+# len(channel) 的应用
+
+以 len(s) 为例：
+
+* 当 s 为无缓冲 channel 时，len(s) 总是返回 0；
+* 当 s 为带缓冲 channel 时，len(s) 返回当前 channel s 中尚未被读取的元素个数
+
+不能简单的对 channel 使用 len 进行“判满”和“判空”逻辑，channel 原语用于多个 goroutine 间的通信，一旦多个 goroutine 共同对 channel 进行手法操作，len(channel) 就会在多个 goroutine 间形成竞态，单纯依靠 len(channel) 来判断 channel 中元素的状态，不能保证后续对 channel 进行收发时 channel 的状态不变。
+
+常见的方法是将判空与读取放在一个事务中，将判满与写入放在一个事务中，而这类事务可以通过 select 实现。
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+// 生产消费者模式中的生产者
+func producer(c chan<- int) {
+	var i int = 1
+	for {
+		time.Sleep(2 * time.Second)
+		ok := trySend(c, i)
+		if ok {
+			fmt.Printf("[producer]: send [%d] to channel\n", i)
+			i++
+			continue
+		}
+		fmt.Printf("[producer]: try send [%d], but channel is full\n", i)
+	}
+}
+
+func tryRecv(c <-chan int) (int, bool) {
+	select {
+	case i := <-c:    // 如果能从channel里接收数据，则自然说明是非空的
+		return i, true
+
+	default:
+		return 0, false // channel为空的情况下，select就只能选择这个分支，表示channel是空的
+	}
+}
+
+func trySend(c chan<- int, i int) bool {
+	select {
+	case c <- i:   // 如果能往channel里发送数据，则自然说明是不满的
+		return true
+	default:
+		return false // channel满的情况下，select就只能选择这个分支，表示channel是满的
+	}
+}
+
+// 生产消费者模式中的接收者
+func consumer(c <-chan int) {
+	for {
+		i, ok := tryRecv(c)
+		if !ok {
+			fmt.Println("[consumer]: try to recv from channel, but the channel is empty")
+			time.Sleep(1 * time.Second)
+			continue
+		}
+		fmt.Printf("[consumer]: recv [%d] from channel\n", i)
+		if i >= 3 {
+			fmt.Println("[consumer]: exit")
+			return
+		}
+	}
+}
+
+func main() {
+	c := make(chan int, 3)
+	go producer(c)
+	go consumer(c)
+
+	select {} // 故意阻塞在此
+}
+```
+
+这么做有一个问题，就是改变了 channel 的状态：接收或发送了一个元素。想在不改变 channel 状态的前提下单纯的侦测 channel 的状态，又不会因 channel 满或空阻塞在 channel 上，目前没有一种方法既可以实现这样的功能又适合所有场合。
+
+在一些特定的场景下，可以只用 len(channel) 实现“判满”和“判空”：
+
+* 多发送单接收的场景，即有多个发送者，但**有且只有一个接收者**，这时可以在接收者 goroutine 中根据 len(channel) 是否大于 0 来判断 channel 中是否有数据需要接收
+* 多接收单发送的场景，即有多个接收者，但**有且只有一个发送者**，这时可以在发送者 goroutine 中根据 len(channel) 是否小于 cap(channel) 来判断是否可以执行向 channel 发送数据
+
 # close 使用上的一些细节
+
+## 已关闭的 channel 仍能从中接收值
+
+从一个已关闭的 channel 接收数据永远不会被阻塞，会得到该 channel 对应类型的零值。
+
+```go
+package main
+
+func main() {
+	c := make(chan int)
+
+	go func() {
+		c <- 99
+		close(c)
+	}()
+
+	println(<-c)
+	println(<-c)
+	println(<-c)
+}
+```
+
+```shell
+$ go run main.go
+99
+0
+0
+```
+
+通过将 channel 设置为 nil 进行阻塞行为
+
+```go
+package main
+
+import "fmt"
+import "time"
+
+func main() {
+	c1, c2 := make(chan int), make(chan int)
+	go func() {
+		time.Sleep(time.Second * 5)
+		c1 <- 5
+		close(c1)
+	}()
+
+	go func() {
+		time.Sleep(time.Second * 7)
+		c2 <- 7
+		close(c2)
+	}()
+
+	for {
+		select {
+		case x, ok := <-c1:
+			if !ok {
+				c1 = nil        // 不设置为nil的话，会一直从c1中接收到对应通道类型的零值
+			} else {
+				fmt.Println(x)
+			}
+		case x, ok := <-c2:
+			if !ok {
+				c2 = nil
+			} else {
+				fmt.Println(x)
+			}
+		}
+		if c1 == nil && c2 == nil {
+			break
+		}
+	}
+	fmt.Println("program end")
+}
+```
+
+```shell
+$ go run main.go
+5
+7
+program end
+```
 
 ## close 后 for range 的行为
 
@@ -147,6 +313,42 @@ break loop 1
 ```shell
 $ go run main.go
 break loop 1
+```
+
+# nil channel 的应用
+
+对没有初始化的 channel（nil channel）进行读写操作将会发生阻塞。
+
+```go
+package main
+
+func main() {
+	var c chan int
+	<-c
+}
+
+or
+
+package main
+
+func main() {
+	var c chan int
+	c <- 1
+}
+```
+
+```shell
+$ go run main.go
+fatal error: all goroutines are asleep - deadlock!
+
+goroutine 1 [chan receive (nil chan)]:
+
+or 
+
+$ go run main.go
+fatal error: all goroutines are asleep - deadlock!
+
+goroutine 1 [chan send (nil chan)]:
 ```
 
 # select
