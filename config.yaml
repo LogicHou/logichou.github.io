@@ -496,7 +496,7 @@ params:
   # Easily browse and edit blog source code online.
   postEdit:
     enable: true
-    url: https://github.com/user-name/repo-name/tree/branch-name/subdirectory-name/
+    url: https://github.com/LogicHou/logichou.github.io/blob/main/content/
 
 
   # 设置文本的对齐方式
