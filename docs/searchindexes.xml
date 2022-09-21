@@ -2,6 +2,23 @@
 <search>
   
   <entry>
+    <title>Go语言基础 - channel速览</title>
+    <url>/post/2022/09/go-channel/</url>
+    <categories><category>Go</category>
+    </categories>
+    <tags>
+      <tag>Go</tag>
+    </tags>
+    <content type="html"><![CDATA[channel 的概念 可以实现 goroutine 减的通信，也可以实现 goroutine 间的同步。
+channel 类型在 Go 中为“一等公民”，可以像使用普通变量那样使用 channel，比如：定义 channel 类型变量，为 channel 变量赋值，将 channel 作为参数传递给函数 / 方法，将 channel 作为返回值从函数 / 方法返回，甚至将 channel 发送到其他 channel 中。
+channel 用法 1 2 3 4 5 6 7 8 9 10 11 12 c := make(chan int) // 创建一个无缓冲（unbuffered）的int类型channel c := make(chan int 5) // 创建一个带缓冲的int类型的channel c &lt;-x // 向channel c中发送一个值 &lt;-c // 从channel c中接收一个值 x = &lt;- c // 从channel c接收一个值并将其存储到变量x中 x, ok = &lt;-c // 从channel c接收一个值。若channel关闭了，ok将被置为false for i := range c {...} // 将for range与channel结合使用，若channel关闭了，for range会接收完channel中的所有值（比如带缓冲channel）再结束 close(c) // 关闭channel c c := make(chan chan int) // 创建一个无缓冲的chan int类型的channel func stream(ctx context.Context, out chan &lt;- Value) error // 将只发送（send-only）channel作为函数参数 func spawn(...) &lt;-chan T // 将只接收（receive-only）类型channel作为返回值 close 使用上的一些细节 close 后 for range 的行为 关闭一个正在通过 for range 接收数据的通道后，for range 会接收完通道内的数据才结束，以带缓冲的通道作为演示：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 package main import ( &#34;time&#34; ) func main() { buffch := make(chan int, 5) go func() { for v := range buffch { println(v) time.Sleep(time.Second * 1) } }() buffch &lt;- 1 buffch &lt;- 2 buffch &lt;- 3 buffch &lt;- 4 buffch &lt;- 5 time.Sleep(time.Second * 3) close(buffch) println(&#34;buffch closed&#34;) time.Sleep(time.Second * 10) } 1 2 3 4 5 6 7 $ go run main.go 1 2 3 buffch closed 4 5 可以使所有接收者收到广播 有一种场景，只有一个发送者，但是有多个接收者，这时如果 channel 作为信号来使用，只往 channel 发送数据一次只能由一个接收者接收到数据，但是使用 close 可以同时触发多个接收者接收到通知，不过这种方式是一次性的，适合用来作为退出信号
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 package main import ( &#34;fmt&#34; &#34;sync&#34; &#34;time&#34; ) func main() { var wg sync.WaitGroup quit := make(chan struct{}) go func() { wg.Add(1) LOOP: for { select { default: time.Sleep(time.Second * 1) case &lt;-quit: fmt.Println(&#34;break loop 1&#34;) break LOOP } } wg.Done() }() go func() { wg.Add(1) LOOP: for { select { default: time.Sleep(time.Second * 1) case &lt;-quit: fmt.Println(&#34;break loop 2&#34;) break LOOP } } wg.Done() }() time.Sleep(time.Second * 3) close(quit) // quit &lt;- struct{}{} wg.Wait() } 1 2 3 $ go run main.go break loop 2 break loop 1 如果将 close(quit) 替换成 quit &lt;- struct{}{} 将只有一个接收者接收到数据
+1 2 $ go run main.go break loop 1 select 通过 select，可以同时在多个 channel 上进行发送 / 接收操作
+1 2 3 4 5 6 7 8 9 select { case x := &lt;- c1: // 从channel c1 接收数据 ... case y, ok := &lt;-c2: // 从channel c2 接收数据，并根据ok值判断c2是否已经关闭 ... case c3 := &lt;- z: // 将z值发送到channel c3中 ... default: // 当上面case中的channel通信均无法实施时，执行该默认分支 } ]]></content>
+  </entry>
+  
+  <entry>
     <title>Go常见的并发模式 - 超时与取消模式</title>
     <url>/post/2022/09/go-concurrency-pattern-4/</url>
     <categories><category>Go</category>
