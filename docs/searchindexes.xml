@@ -2,27 +2,6 @@
 <search>
   
   <entry>
-    <title>HTML5 笔记</title>
-    <url>/post/2022/09/html5-note/</url>
-    <categories><category>前端</category>
-    </categories>
-    <tags>
-      <tag>html</tag>
-    </tags>
-    <content type="html"><![CDATA[HTML5 的几个特性 空白折叠现象 文字和文字之间的多个空格、换行会被折叠成一个空格
-标签“内壁”和文字之间的空格会被忽略
-1 2 3 4 5 6 &lt;body&gt; &lt;p&gt;文字1 文字2&lt;/p&gt; 文字1和文字2之间的空格和换行会被折叠成一个空格 &lt;p&gt; 文字3 &lt;/p&gt; 文字3前后的空格会被忽略 &lt;/body&gt; 常见转义字符 1 2 3 4 &amp;lt; 小于号 &amp;gt; 大于号 &amp;nbsp; 空格（不会被折叠） &amp;copy; 版权符号© HTML 注释 1 2 3 &lt;!-- page header --&gt; &lt;!-- page content --&gt; &lt;!-- page footer --&gt; 标签 HTMl 叫做“超文本标记语言”，超文本标记就是标签，不同的标签有不同的功能，一般都是成对出现的
-原标签 原标签是单标签，用来做一些网页的基础配置
-&lt;meta charset=&quot;UTF-8&quot;&gt; 设置网页字符集
-title &lt;title&gt;我的网站&lt;/title&gt; 设置网页标题
-网页关键词和页面描述，方便 SEO 1 2 &lt;meta name=&#34;keywords&#34; content=&#34;苹果官网, Apple官网, 苹果中国, Apple中国&#34; /&gt; &lt;meta name=&#34;Description&#34; content=&#34;探索 Apple 充满创新的世界，选购各式 iPhone、iPad、Apple Watch 和 Mac，浏览各种配件、娱乐产品，并获得相关产品的专家支持服务。&#34; /&gt; div 标签 div 是英语 division “分割” 的缩写，用来将相关内容组合到一起，以和其他内容分割，使文档结构更清晰。比如网页头部、轮播图、文章内容要放入到一个 div 标签对中
-div 像是一个容器，什么都可以容纳，也习惯将 div 称为“盒子”
-标题标签 1 2 3 4 5 6 h1 一级标题 h2 二级标题 h3 三级标题 h4 四级标题 h5 五级标题 h6 六级标题 HTML5 骨架 在 vscode 中的空白 html 文件中输入一个 ! 号再按 tab 键盘，可以快速生成 HTML5 骨架代码
-1 2 3 4 5 6 7 8 9 10 &lt;!DOCTYPE html&gt; &lt;!-- 文档类型声明DTD --&gt; &lt;html lang=&#34;en&#34;&gt; &lt;!-- 表示网页的语言，zh表示中文，不改也行 --&gt; &lt;head&gt; &lt;!-- head标签对用于网页的配置 --&gt; &lt;meta charset=&#34;UTF-8&#34; /&gt; &lt;meta http-equiv=&#34;X-UA-Compatible&#34; content=&#34;IE=edge&#34; /&gt; &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34; /&gt; &lt;title&gt;Document&lt;/title&gt; &lt;/head&gt; &lt;body&gt;&lt;/body&gt; &lt;!-- body标签对里面是网页真正主要的内容部分 --&gt; &lt;/html&gt; 文档类型声明 DTD HTML 文件第一行必须是 DTD(Document Type Definition 文档类型声明) 不写DTD会引发浏览器的一些兼容问题 不同版本的 HTML 有不同的 DTD 写法 div 常见的类名 div 标签可以添加 class 属性表示“类型”，类名服务于 CSS
-区域 类名 ------------------------ 页头 header logo logo 导航条 nav 横幅 banner 内容区域 content 页脚 footer ]]></content>
-  </entry>
-  
-  <entry>
     <title>Go语言基础 - channel速览</title>
     <url>/post/2022/09/go-channel/</url>
     <categories><category>Go</category>

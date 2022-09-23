@@ -6,16 +6,7 @@
     <description>Recent content in Categories on Proj-86</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 22 Sep 2022 20:28:17 +0800</lastBuildDate><atom:link href="/categories/rss.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>前端</title>
-      <link>/categories/%E5%89%8D%E7%AB%AF/</link>
-      <pubDate>Thu, 22 Sep 2022 20:28:17 +0800</pubDate>
-      
-      <guid>/categories/%E5%89%8D%E7%AB%AF/</guid>
-      <description></description>
-    </item>
-    
+    <lastBuildDate>Wed, 21 Sep 2022 18:23:10 +0800</lastBuildDate><atom:link href="/categories/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go</title>
       <link>/categories/go/</link>
