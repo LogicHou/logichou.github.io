@@ -6,7 +6,16 @@
     <description>Recent content on Proj-86</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 21 Sep 2022 18:23:10 +0800</lastBuildDate><atom:link href="/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Sep 2022 20:28:17 +0800</lastBuildDate><atom:link href="/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTML5 笔记</title>
+      <link>/post/2022/09/html5-note/</link>
+      <pubDate>Thu, 22 Sep 2022 20:28:17 +0800</pubDate>
+      
+      <guid>/post/2022/09/html5-note/</guid>
+      <description>HTML5 的几个特性 空白折叠现象 文字和文字之间的多个空格、换行会被折叠成一个空格 标签“内壁”和文字之间的空格会被忽略 1 2 3 4 5 6 &amp;lt;body&amp;gt; &amp;lt;p&amp;gt;</description>
+    </item>
+    
     <item>
       <title>Go语言基础 - channel速览</title>
       <link>/post/2022/09/go-channel/</link>
@@ -53,7 +62,7 @@
     </item>
     
     <item>
-      <title>关于 Hugo NexT 组织</title>
+      <title>关于</title>
       <link>/about.html</link>
       <pubDate>Thu, 09 Jun 2022 20:12:52 +0800</pubDate>
       

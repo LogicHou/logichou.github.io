@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>前端 on Proj-86</title>
+    <link>/categories/%E5%89%8D%E7%AB%AF/</link>
+    <description>Recent content in 前端 on Proj-86</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 22 Sep 2022 20:28:17 +0800</lastBuildDate><atom:link href="/categories/%E5%89%8D%E7%AB%AF/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTML5 笔记</title>
+      <link>/post/2022/09/html5-note/</link>
+      <pubDate>Thu, 22 Sep 2022 20:28:17 +0800</pubDate>
+      
+      <guid>/post/2022/09/html5-note/</guid>
+      <description>HTML5 的几个特性 空白折叠现象 文字和文字之间的多个空格、换行会被折叠成一个空格 标签“内壁”和文字之间的空格会被忽略 1 2 3 4 5 6 &amp;lt;body&amp;gt; &amp;lt;p&amp;gt;</description>
+    </item>
+    
+  </channel>
+</rss>
